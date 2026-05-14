@@ -19,6 +19,7 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -34,11 +35,13 @@ body {
     color: var(--ink);
     font-family: "Inter", Arial, sans-serif;
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 img,
 iframe {
     max-width: 100%;
+    height: auto;
 }
 
 .site-header {
@@ -233,6 +236,7 @@ h3 {
     border-radius: 8px;
     font-weight: 900;
     text-decoration: none;
+    text-align: center;
     transition: background 180ms ease, transform 180ms ease, border-color 180ms ease;
 }
 
@@ -570,6 +574,7 @@ h3 {
     padding: 24px;
     color: var(--ink);
     text-decoration: none;
+    overflow-wrap: anywhere;
     transition: border-color 180ms ease, transform 180ms ease;
 }
 
@@ -647,19 +652,7 @@ h3 {
     transform: translateY(0);
 }
 
-@media (max-width: 960px) {
-    .component-grid,
-    .topic-grid,
-    .application-list {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .topic-card-wide {
-        grid-column: span 2;
-    }
-}
-
-@media (max-width: 780px) {
+@media (max-width: 1040px) {
     .menu-toggle {
         display: block;
     }
@@ -667,11 +660,13 @@ h3 {
     .nav-links {
         position: absolute;
         top: 72px;
-        right: 12px;
-        left: 12px;
+        right: 16px;
+        left: 16px;
         display: none;
         flex-direction: column;
         align-items: stretch;
+        max-height: calc(100vh - 92px);
+        overflow-y: auto;
         padding: 12px;
         border: 1px solid var(--line);
         border-radius: 8px;
@@ -687,10 +682,39 @@ h3 {
         width: 100%;
     }
 
+    .component-grid,
+    .topic-grid,
+    .resource-grid,
+    .application-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .topic-card-wide {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 780px) {
+    .nav-links {
+        right: 12px;
+        left: 12px;
+    }
+
+    .navbar,
+    .section,
+    .section-alt {
+        width: min(100% - 24px, 1120px);
+    }
+
     .section,
     .section-alt {
         padding-top: 54px;
         padding-bottom: 54px;
+    }
+
+    .section-alt {
+        padding-right: 12px;
+        padding-left: 12px;
     }
 
     .hero {
@@ -706,8 +730,9 @@ h3 {
     }
 
     .profile-photo {
-        width: min(220px, 68vw);
+        width: min(210px, 64vw);
         margin: 0 auto;
+        border-width: 6px;
     }
 
     h1 {
@@ -732,6 +757,24 @@ h3 {
     .application-list article,
     .resource-link {
         padding: 20px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .primary-link,
+    .secondary-link {
+        width: 100%;
+    }
+
+    .model-card ol {
+        padding-left: 18px;
+    }
+
+    .diagram-card img {
+        max-height: 360px;
     }
 
     .signal-gallery .diagram-card img {
@@ -765,5 +808,88 @@ h3 {
     .short-bio {
         margin-right: auto;
         margin-left: auto;
+    }
+}
+
+@media (max-width: 460px) {
+    body {
+        background-attachment: scroll;
+        background-size: auto, auto, 32px 32px, 32px 32px, auto;
+    }
+
+    .navbar {
+        min-height: 64px;
+    }
+
+    .brand {
+        max-width: 210px;
+        font-size: 0.96rem;
+    }
+
+    .nav-links {
+        top: 64px;
+        max-height: calc(100vh - 82px);
+    }
+
+    .menu-toggle {
+        width: 40px;
+        height: 40px;
+    }
+
+    .section,
+    .section-alt {
+        width: calc(100% - 20px);
+        padding-top: 46px;
+        padding-bottom: 46px;
+    }
+
+    .hero {
+        padding-top: 34px;
+    }
+
+    .profile-photo {
+        width: min(190px, 62vw);
+    }
+
+    h1 {
+        font-size: clamp(2rem, 12vw, 2.8rem);
+    }
+
+    h2 {
+        font-size: clamp(1.6rem, 9vw, 2.1rem);
+    }
+
+    h3 {
+        font-size: 1.08rem;
+    }
+
+    .stats-grid strong {
+        font-size: 1.55rem;
+    }
+
+    .stats-grid div,
+    .info-card,
+    .topic-card,
+    .model-card,
+    .application-list article,
+    .resource-link {
+        padding: 16px;
+    }
+
+    .detailed-models .model-card {
+        padding: 18px;
+    }
+
+    .signal-gallery .diagram-card img {
+        height: 210px;
+        padding: 12px;
+    }
+
+    .back-to-top {
+        right: 14px;
+        bottom: 14px;
+        width: 42px;
+        height: 42px;
+        font-size: 0.78rem;
     }
 }
