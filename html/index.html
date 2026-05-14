@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Communication </title>
+    <title>Data Communication assignment</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
@@ -21,8 +21,9 @@
             <ul class="nav-links">
                 <li><a href="#home" class="nav-link active">Home</a></li>
                 <li><a href="#topics" class="nav-link">Topics</a></li>
+                <li><a href="#models" class="nav-link">Models</a></li>
+                <li><a href="#security" class="nav-link">Security</a></li>
                 <li><a href="#telegraph" class="nav-link">Telegraph</a></li>
-                <li><a href="#inspiration" class="nav-link">Inspiration</a></li>
                 <li><a href="#resources" class="nav-link">Resources</a></li>
             </ul>
         </nav>
@@ -31,94 +32,234 @@
     <main>
         <section id="home" class="hero section reveal">
             <div class="hero-content">
-                <p class="eyebrow">PUIT/24110016</p>
-                <h1>Data Communication Assignment</h1>
-                <p>
-                    Exploring how information moves across systems, from historic telegraph signals to the digital networks
-                    that power modern communication.
-                </p>
-                <a href="#telegraph" class="primary-link">Explore the telegraph</a>
+                <div class="profile-card">
+                    <img src="../assets/picture.jpg" alt="Portrait of Stephen Swanzy" class="profile-photo">
+                    <div>
+                        <p class="eyebrow">PUIT/24110016</p>
+                        <h1>Data Communication Assignment</h1>
+                        <p class="short-bio">
+                            My name is Stephen Swanzy, an IT student passionate about technology, networks, innovation, and
+                            using digital skills to solve real-world problems.
+                        </p>
+                        <p class="hero-copy">
+                            A professional guide to how data is created, transmitted, protected, and delivered through modern
+                            communication systems, from telegraph signals to satellites, cryptography, and internet models.
+                        </p>
+                        <div class="hero-actions">
+                            <a href="#topics" class="primary-link">Start Reading</a>
+                            <a href="#telegraph" class="secondary-link">View Telegraph</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="stats-grid" aria-label="Assignment overview">
+                    <div><strong>10+</strong><span>Topics</span></div>
+                    <div><strong>7</strong><span>OSI Layers</span></div>
+                    <div><strong>4</strong><span>TCP/IP Layers</span></div>
+                    <div><strong>3</strong><span>Telegraph Images</span></div>
+                </div>
             </div>
         </section>
 
         <section id="topics" class="section reveal">
-            <div class="section-heading">
+            <div class="section-heading centered">
                 <p class="eyebrow">Core topics</p>
-                <h2>Communication Concepts</h2>
+                <h2>Data Communication Concepts</h2>
+                <p>
+                    Data communication is the exchange of digital or analog information between devices through wired or
+                    wireless media. It depends on signals, protocols, addressing, timing, and reliability.
+                </p>
             </div>
-            <div class="accordion" data-accordion>
-                <article class="accordion-item">
-                    <button class="accordion-trigger" type="button" aria-expanded="true">
-                        <span>What is data communication?</span>
-                        <span class="accordion-icon">-</span>
-                    </button>
-                    <div class="accordion-panel open">
-                        <p>
-                            Data communication is the exchange of digital or analog information between two or more devices
-                            through a transmission medium such as copper wire, fiber optic cable, radio waves, or satellite links.
-                        </p>
-                    </div>
+
+            <div class="component-grid">
+                <article class="info-card">
+                    <span class="card-number">01</span>
+                    <h3>Sender</h3>
+                    <p>The device that creates the message, such as a computer, phone, server, sensor, or telegraph key.</p>
                 </article>
-                <article class="accordion-item">
-                    <button class="accordion-trigger" type="button" aria-expanded="false">
-                        <span>Basic communication model</span>
-                        <span class="accordion-icon">+</span>
-                    </button>
-                    <div class="accordion-panel">
-                        <p>
-                            A sender creates a message, a transmitter converts it into a signal, a channel carries the signal,
-                            and a receiver reconstructs the message for the destination.
-                        </p>
-                    </div>
+                <article class="info-card">
+                    <span class="card-number">02</span>
+                    <h3>Message</h3>
+                    <p>The data being transmitted. It can be text, images, sound, video, commands, or machine readings.</p>
                 </article>
-                <article class="accordion-item">
-                    <button class="accordion-trigger" type="button" aria-expanded="false">
-                        <span>Why signals matter</span>
-                        <span class="accordion-icon">+</span>
-                    </button>
-                    <div class="accordion-panel">
-                        <p>
-                            Signals make communication possible because they convert information into electrical, optical, or
-                            wireless patterns that can travel across distance and be interpreted by another device.
-                        </p>
-                    </div>
+                <article class="info-card">
+                    <span class="card-number">03</span>
+                    <h3>Medium</h3>
+                    <p>The path used to carry the signal, including copper cables, fiber optics, radio waves, and satellites.</p>
+                </article>
+                <article class="info-card">
+                    <span class="card-number">04</span>
+                    <h3>Receiver</h3>
+                    <p>The device that accepts the signal, decodes it, checks it, and presents the message to the user or system.</p>
+                </article>
+                <article class="info-card">
+                    <span class="card-number">05</span>
+                    <h3>Protocol</h3>
+                    <p>The rules that control formatting, addressing, sequencing, error checking, and delivery confirmation.</p>
+                </article>
+                <article class="info-card">
+                    <span class="card-number">06</span>
+                    <h3>Noise</h3>
+                    <p>Unwanted interference that can distort a signal and cause errors, delay, or loss of information.</p>
                 </article>
             </div>
         </section>
 
-        <section id="telegraph" class="section section-alt reveal">
-            <div class="section-heading">
-                <p class="eyebrow">Telegraph section</p>
-                <h2>How the Telegraph Works</h2>
+        <section class="section section-alt reveal">
+            <div class="section-heading centered">
+                <p class="eyebrow">Expanded topics</p>
+                <h2>Important Areas in Data Communication</h2>
             </div>
+            <div class="topic-grid">
+                <article class="topic-card">
+                    <h3>Transmission Modes</h3>
+                    <p>Simplex sends data in one direction only, half-duplex sends both ways but one at a time, and full-duplex sends both ways at the same time.</p>
+                </article>
+                <article class="topic-card">
+                    <h3>Analog and Digital Signals</h3>
+                    <p>Analog signals are continuous waves, while digital signals use discrete binary values. Modern networks mostly use digital data.</p>
+                </article>
+                <article class="topic-card">
+                    <h3>Bandwidth and Speed</h3>
+                    <p>Bandwidth is the capacity of a channel. Higher bandwidth can carry more data, but actual speed also depends on delay, congestion, and hardware.</p>
+                </article>
+                <article class="topic-card">
+                    <h3>Transmission Media</h3>
+                    <p>Guided media include twisted pair, coaxial, and fiber optic cables. Unguided media include Wi-Fi, Bluetooth, microwave, and satellite links.</p>
+                </article>
+                <article class="topic-card">
+                    <h3>Error Detection</h3>
+                    <p>Parity checks, checksums, and CRC help systems detect corrupted data so the receiver can request retransmission.</p>
+                </article>
+                <article class="topic-card">
+                    <h3>Multiplexing</h3>
+                    <p>Multiplexing allows multiple signals to share one communication channel using time, frequency, wavelength, or code division.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="models" class="section reveal">
+            <div class="section-heading centered">
+                <p class="eyebrow">OSI and TCP/IP</p>
+                <h2>Network Models Explained</h2>
+                <p>
+                    Network models organize communication into layers. Each layer has a specific job, making complex systems
+                    easier to design, understand, and troubleshoot.
+                </p>
+            </div>
+            <div class="model-grid detailed-models">
+                <article class="model-card">
+                    <h3>OSI Model: 7 Layers</h3>
+                    <ol>
+                        <li><strong>Physical:</strong> Sends raw bits through cables, radio waves, connectors, and electrical or optical signals.</li>
+                        <li><strong>Data Link:</strong> Handles local delivery, MAC addresses, frames, and error detection on the same network.</li>
+                        <li><strong>Network:</strong> Routes packets between networks using logical addresses such as IP addresses.</li>
+                        <li><strong>Transport:</strong> Provides end-to-end delivery, segmentation, reliability, and flow control using TCP or UDP.</li>
+                        <li><strong>Session:</strong> Starts, manages, and ends communication sessions between applications.</li>
+                        <li><strong>Presentation:</strong> Converts data formats, compresses data, and supports encryption or decryption.</li>
+                        <li><strong>Application:</strong> Provides user-facing network services such as web browsing, email, file transfer, and DNS.</li>
+                    </ol>
+                </article>
+                <article class="model-card">
+                    <h3>TCP/IP Model: 4 Layers</h3>
+                    <ol>
+                        <li><strong>Network Access:</strong> Controls physical transmission and local network delivery through Ethernet, Wi-Fi, or other media.</li>
+                        <li><strong>Internet:</strong> Uses IP addressing and routing to move packets across different networks.</li>
+                        <li><strong>Transport:</strong> Uses TCP for reliable ordered delivery or UDP for faster connectionless delivery.</li>
+                        <li><strong>Application:</strong> Contains protocols such as HTTP, HTTPS, DNS, SMTP, FTP, and DHCP.</li>
+                    </ol>
+                    <p>
+                        The TCP/IP model is the practical model used by the internet. It focuses on real communication between
+                        devices and combines several OSI functions into fewer layers.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section id="security" class="section section-alt reveal">
+            <div class="section-heading centered">
+                <p class="eyebrow">Security and satellites</p>
+                <h2>Modern Communication Topics</h2>
+            </div>
+            <div class="topic-grid">
+                <article class="topic-card topic-card-wide">
+                    <h3>Cryptography</h3>
+                    <p>
+                        Cryptography protects data by converting readable information into unreadable ciphertext. Encryption
+                        keeps messages private, hashing checks integrity, and digital signatures prove that a message came from
+                        the correct sender. In data communication, cryptography is used in HTTPS, online banking, mobile apps,
+                        Wi-Fi security, VPNs, and secure email.
+                    </p>
+                </article>
+                <article class="topic-card topic-card-wide">
+                    <h3>Satellite Communication</h3>
+                    <p>
+                        Satellite communication sends signals from an earth station to a satellite and back to another location.
+                        It is useful for TV broadcasting, GPS, aviation, ships, remote villages, disaster recovery, and global
+                        internet services. Satellites cover wide areas, but they can experience delay, weather interference, and
+                        high setup cost.
+                    </p>
+                </article>
+                <article class="topic-card">
+                    <h3>Modulation</h3>
+                    <p>Modulation changes a carrier wave so it can carry information across long distances more efficiently.</p>
+                </article>
+                <article class="topic-card">
+                    <h3>Network Devices</h3>
+                    <p>Switches, routers, modems, access points, repeaters, and gateways move data between users and networks.</p>
+                </article>
+                <article class="topic-card">
+                    <h3>Internet Services</h3>
+                    <p>Websites, email, cloud storage, video calls, and streaming all depend on reliable data communication.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="telegraph" class="section reveal">
+            <div class="section-heading centered">
+                <p class="eyebrow">Telegraph section</p>
+                <h2>How Telegraph Communication Works</h2>
+                <p>
+                    The telegraph is one of the earliest electronic data communication systems. It used electrical pulses to
+                    send coded messages over long distances.
+                </p>
+            </div>
+
             <div class="telegraph-layout">
                 <figure class="diagram-card">
-                    <img
-                        src="https://upload.wikimedia.org/wikipedia/commons/0/08/NIE_1905_Telegraph_-_Schematic.jpg"
-                        alt="Schematic diagram showing the operation of an electric telegraph line">
-                    <figcaption>
-                        Public-domain telegraph schematic from The New International Encyclopaedia, 1905.
-                    </figcaption>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/NIE_1905_Telegraph_-_Schematic.jpg" alt="Schematic diagram showing the operation of an electric telegraph line">
+                    <figcaption>Electric telegraph schematic from The New International Encyclopaedia, 1905.</figcaption>
                 </figure>
                 <div class="explanation">
                     <h3>From key press to message</h3>
                     <p>
-                        A telegraph sends messages by turning written language into controlled electrical pulses. The operator
-                        presses a telegraph key to close an electric circuit. When the circuit closes, current flows through the
-                        wire to a distant station and energizes an electromagnet.
+                        A telegraph operator presses a key to close an electrical circuit. When the circuit closes, current
+                        flows through the telegraph line to a distant station. At the receiver, the current activates an
+                        electromagnet that produces clicks or marks.
                     </p>
                     <p>
-                        The receiving electromagnet moves a sounder or marker, producing clicks or marks. Short and long pulses
-                        represent dots and dashes in Morse code, so the receiver can translate the pattern back into letters,
-                        words, and full messages.
+                        Short pulses represent dots and long pulses represent dashes. These dots and dashes form Morse code,
+                        which is translated into letters, words, and full messages. This made long-distance communication much
+                        faster than sending physical letters.
                     </p>
                     <ul class="feature-list">
-                        <li>Telegraph key controls the circuit.</li>
-                        <li>Battery or power source sends current through the line.</li>
-                        <li>Electromagnet at the receiver turns pulses into readable signals.</li>
+                        <li>Telegraph key opens and closes the circuit.</li>
+                        <li>Electrical pulses travel through the wire.</li>
+                        <li>Morse code converts pulse patterns into readable messages.</li>
                     </ul>
                 </div>
             </div>
+
+            <div class="signal-gallery">
+                <figure class="diagram-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/International_Morse_Code.svg" alt="International Morse code chart showing dots and dashes">
+                    <figcaption>International Morse code chart showing telegraph signal patterns.</figcaption>
+                </figure>
+                <figure class="diagram-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/37/Morse_Signal_Key.png" alt="Morse signal key showing dots and dashes">
+                    <figcaption>Morse signal key with dots and dashes used in telegraph communication.</figcaption>
+                </figure>
+            </div>
+
             <div class="video-wrap" aria-label="Embedded YouTube video about telegraph communication">
                 <iframe
                     src="https://www.youtube.com/embed/ddCSzZjHMOo"
@@ -129,8 +270,8 @@
             </div>
         </section>
 
-        <section id="inspiration" class="section reveal">
-            <div class="section-heading">
+        <section id="inspiration" class="section section-alt reveal">
+            <div class="section-heading centered">
                 <p class="eyebrow">Inspiration section</p>
                 <h2>Motivation for a Technology Career</h2>
             </div>
@@ -139,28 +280,34 @@
                 gives me the courage to imagine better systems, while music reminds me that creativity, rhythm, and discipline
                 can shape both art and an IT career. By learning data communication, programming, and digital systems, I am
                 preparing myself to solve real-world problems with practical, reliable solutions. My goal is to grow into a tech
-                professional who does not only understand machines, networks, and software, but also uses them to improve lives,
-                connect people, and build opportunities for the future.
+                professional who understands networks, software, security, and communication systems, and uses them to improve
+                lives, connect people, and build opportunities for the future.
             </p>
         </section>
 
-        <section id="resources" class="section section-alt reveal">
-            <div class="section-heading">
+        <section id="resources" class="section reveal">
+            <div class="section-heading centered">
                 <p class="eyebrow">Resources section</p>
                 <h2>Project Links</h2>
             </div>
             <div class="resource-grid">
-                <a class="resource-link" href="#" target="_blank" rel="noopener">
+                <a class="resource-link" href="https://github.com/stephen-swanzy/DATA-COMMUNICTION-ASSIGNMENT" target="_blank" rel="noopener">
                     <span>1. GitHub Repository</span>
-                    <small><!-- INSERT GITHUB LINK HERE -->Add repository URL</small>
+                    <small>View the project source code on GitHub</small>
                 </a>
-                <a class="resource-link" href="#" target="_blank" rel="noopener">
+                <a class="resource-link" href="../assets/DATA%20COMMUNICATION.pdf" target="_blank" rel="noopener">
                     <span>2. Turnitin PDF</span>
-                    <small><!-- INSERT TURNITIN LINK HERE -->Add Turnitin PDF URL</small>
+                    <small>Open the attached assignment PDF</small>
+                </a>
+                <a class="resource-link" href="https://www.youtube.com/watch?v=ddCSzZjHMOo" target="_blank" rel="noopener">
+                    <span>3. Telegraph YouTube Video</span>
+                    <small>Open the video in a new browser tab</small>
                 </a>
             </div>
         </section>
     </main>
+
+    <button class="back-to-top" type="button" aria-label="Back to top">Top</button>
 
     <footer class="footer">
         <p>STEPHEN SWANZY</p>
@@ -172,3 +319,4 @@
     <script src="../java script/script.js"></script>
 </body>
 </html>
+
