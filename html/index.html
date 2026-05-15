@@ -10,7 +10,14 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+    <div class="loader" aria-live="polite">
+        <div>
+            <span class="loader-mark"></span>
+            <p>Loading Data Communication</p>
+        </div>
+    </div>
     <div class="scroll-progress" aria-hidden="true"></div>
+    <div class="network-bg" aria-hidden="true"></div>
     <header class="site-header">
         <nav class="navbar" aria-label="Primary navigation">
             <a href="#home" class="brand">Data Communication</a>
@@ -55,6 +62,7 @@
                             <a href="#topics" class="primary-link">Start Reading</a>
                             <a href="#telegraph" class="secondary-link">View Telegraph</a>
                             <button class="copy-link" type="button">Copy Live Link</button>
+                            <button class="print-page" type="button">Print Page</button>
                         </div>
                     </div>
                 </div>
@@ -453,6 +461,51 @@
             </p>
         </section>
 
+        <section id="quiz" class="section reveal">
+            <div class="section-heading centered">
+                <p class="eyebrow">Knowledge check</p>
+                <h2>Quick Data Communication Quiz</h2>
+                <p>Test your understanding with a short interactive quiz.</p>
+            </div>
+            <form class="quiz-card">
+                <fieldset>
+                    <legend>1. Which model has seven layers?</legend>
+                    <label><input type="radio" name="q1" value="wrong"> TCP/IP model</label>
+                    <label><input type="radio" name="q1" value="correct"> OSI model</label>
+                    <label><input type="radio" name="q1" value="wrong"> Client model</label>
+                </fieldset>
+                <fieldset>
+                    <legend>2. What does cryptography help protect?</legend>
+                    <label><input type="radio" name="q2" value="correct"> Confidentiality and integrity</label>
+                    <label><input type="radio" name="q2" value="wrong"> Monitor brightness</label>
+                    <label><input type="radio" name="q2" value="wrong"> Keyboard speed</label>
+                </fieldset>
+                <fieldset>
+                    <legend>3. What code was used by telegraph operators?</legend>
+                    <label><input type="radio" name="q3" value="wrong"> Binary color code</label>
+                    <label><input type="radio" name="q3" value="correct"> Morse code</label>
+                    <label><input type="radio" name="q3" value="wrong"> Zip code</label>
+                </fieldset>
+                <button type="button" class="quiz-submit">Check Score</button>
+                <p class="quiz-result" aria-live="polite"></p>
+            </form>
+        </section>
+
+        <section id="glossary" class="section section-alt reveal">
+            <div class="section-heading centered">
+                <p class="eyebrow">Glossary</p>
+                <h2>Key Terms</h2>
+            </div>
+            <div class="glossary-grid">
+                <article><h3>Protocol</h3><p>A rule set that controls how devices format, send, receive, and confirm data.</p></article>
+                <article><h3>Bandwidth</h3><p>The amount of data a communication channel can carry in a given time.</p></article>
+                <article><h3>Encryption</h3><p>The process of converting readable data into protected ciphertext.</p></article>
+                <article><h3>Packet</h3><p>A small unit of data sent across a network with addressing information.</p></article>
+                <article><h3>Latency</h3><p>The delay before data reaches its destination or a response returns.</p></article>
+                <article><h3>Modulation</h3><p>The process of changing a carrier signal so it can carry information.</p></article>
+            </div>
+        </section>
+
         <section id="resources" class="section reveal">
             <div class="section-heading centered">
                 <p class="eyebrow">Resources section</p>
@@ -474,6 +527,22 @@
             </div>
         </section>
     </main>
+
+    <nav class="side-dots" aria-label="Section shortcuts">
+        <a href="#home" aria-label="Home"></a>
+        <a href="#topics" aria-label="Topics"></a>
+        <a href="#models" aria-label="Models"></a>
+        <a href="#security" aria-label="Security"></a>
+        <a href="#telegraph" aria-label="Telegraph"></a>
+        <a href="#quiz" aria-label="Quiz"></a>
+        <a href="#resources" aria-label="Resources"></a>
+    </nav>
+
+    <div class="floating-resources" aria-label="Floating resources">
+        <a href="https://github.com/stephen-swanzy/DATA-COMMUNICTION-ASSIGNMENT" target="_blank" rel="noopener">GitHub</a>
+        <a href="../assets/DATA%20COMMUNICATION.pdf" target="_blank" rel="noopener">PDF</a>
+        <a href="https://www.youtube.com/watch?v=ddCSzZjHMOo" target="_blank" rel="noopener">Video</a>
+    </div>
 
     <button class="back-to-top" type="button" aria-label="Back to top">Top</button>
 

@@ -51,6 +51,48 @@ body {
     overflow-x: hidden;
 }
 
+.loader {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: grid;
+    place-items: center;
+    background: var(--bg);
+    color: var(--primary-dark);
+    transition: opacity 300ms ease, visibility 300ms ease;
+}
+
+.loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader div {
+    display: grid;
+    justify-items: center;
+    gap: 14px;
+}
+
+.loader-mark {
+    width: 46px;
+    height: 46px;
+    border: 4px solid var(--line);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 900ms linear infinite;
+}
+
+.loader p {
+    margin: 0;
+    font-weight: 900;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 .scroll-progress {
     position: fixed;
     top: 0;
@@ -60,6 +102,24 @@ body {
     height: 4px;
     background: linear-gradient(90deg, var(--primary), var(--accent));
     box-shadow: 0 0 18px rgba(7, 135, 166, 0.35);
+}
+
+.network-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+        linear-gradient(115deg, transparent 0 46%, rgba(7, 135, 166, 0.18) 47%, transparent 48% 100%),
+        linear-gradient(65deg, transparent 0 52%, rgba(245, 158, 11, 0.1) 53%, transparent 54% 100%);
+    background-size: 280px 280px, 340px 340px;
+    animation: driftLines 18s linear infinite;
+    opacity: 0.7;
+}
+
+@keyframes driftLines {
+    to {
+        background-position: 280px 280px, -340px 340px;
+    }
 }
 
 img,
@@ -314,7 +374,8 @@ h3 {
 
 .primary-link,
 .secondary-link,
-.copy-link {
+.copy-link,
+.print-page {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -341,14 +402,16 @@ h3 {
     color: var(--primary-dark);
 }
 
-.copy-link {
+.copy-link,
+.print-page {
     background: var(--ink);
     color: #ffffff;
 }
 
 .primary-link:hover,
 .secondary-link:hover,
-.copy-link:hover {
+.copy-link:hover,
+.print-page:hover {
     transform: translateY(-2px);
 }
 
@@ -609,6 +672,9 @@ body.dark-theme .application-list article,
 body.dark-theme .diagram-card,
 body.dark-theme .resource-link,
 body.dark-theme .timeline article,
+body.dark-theme .quiz-card,
+body.dark-theme .quiz-card fieldset,
+body.dark-theme .glossary-grid article,
 body.dark-theme .stats-grid div {
     background: rgba(16, 45, 56, 0.94);
 }
@@ -683,6 +749,37 @@ body.dark-theme .stats-grid div {
 .timeline p {
     margin-bottom: 0;
     color: var(--muted);
+}
+
+.learned-btn {
+    align-self: flex-start;
+    margin-top: 14px;
+    padding: 8px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.flip-card.learned .flip-card-front {
+    border-color: var(--accent);
+}
+
+.flip-card.learned .flip-card-front::after {
+    content: "Learned";
+    position: absolute;
+    right: 14px;
+    bottom: 14px;
+    padding: 5px 9px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #101828;
+    font-size: 0.7rem;
+    font-weight: 900;
 }
 
 .accordion {
@@ -895,6 +992,116 @@ body.dark-theme .stats-grid div {
     font-size: 0.92rem;
 }
 
+.quiz-card {
+    display: grid;
+    gap: 18px;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 26px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+}
+
+.quiz-card fieldset {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+}
+
+.quiz-card legend {
+    color: var(--ink);
+    font-weight: 900;
+}
+
+.quiz-card label {
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.quiz-submit {
+    justify-self: start;
+    min-height: 44px;
+    padding: 0 18px;
+    border: 0;
+    border-radius: 8px;
+    background: var(--primary);
+    color: #ffffff;
+    font: inherit;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.quiz-result {
+    margin: 0;
+    color: var(--primary-dark);
+    font-weight: 900;
+}
+
+.glossary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.glossary-grid article {
+    padding: 22px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+}
+
+.glossary-grid p {
+    margin-bottom: 0;
+    color: var(--muted);
+}
+
+.side-dots {
+    position: fixed;
+    top: 50%;
+    right: 14px;
+    z-index: 14;
+    display: grid;
+    gap: 10px;
+    transform: translateY(-50%);
+}
+
+.side-dots a {
+    width: 11px;
+    height: 11px;
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    background: var(--surface);
+}
+
+.floating-resources {
+    position: fixed;
+    left: 14px;
+    bottom: 18px;
+    z-index: 15;
+    display: grid;
+    gap: 8px;
+}
+
+.floating-resources a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: var(--ink);
+    color: #ffffff;
+    font-size: 0.78rem;
+    font-weight: 900;
+    text-decoration: none;
+    box-shadow: var(--shadow);
+}
+
 .back-to-top {
     position: fixed;
     right: 22px;
@@ -992,6 +1199,7 @@ body.dark-theme .stats-grid div {
     .topic-grid,
     .resource-grid,
     .timeline,
+    .glossary-grid,
     .application-list {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -1086,7 +1294,8 @@ body.dark-theme .stats-grid div {
 
     .primary-link,
     .secondary-link,
-    .copy-link {
+    .copy-link,
+    .print-page {
         width: 100%;
     }
 
@@ -1114,6 +1323,7 @@ body.dark-theme .stats-grid div {
     .telegraph-layout,
     .signal-gallery,
     .timeline,
+    .glossary-grid,
     .resource-grid {
         grid-template-columns: 1fr;
     }
@@ -1199,6 +1409,7 @@ body.dark-theme .stats-grid div {
     .info-card,
     .model-card,
     .timeline article,
+    .glossary-grid article,
     .application-list article,
     .resource-link {
         padding: 14px;
@@ -1232,5 +1443,52 @@ body.dark-theme .stats-grid div {
         width: 42px;
         height: 42px;
         font-size: 0.78rem;
+    }
+
+    .side-dots {
+        display: none;
+    }
+
+    .floating-resources {
+        right: 12px;
+        bottom: 64px;
+        left: auto;
+    }
+
+    .floating-resources a {
+        min-height: 32px;
+        padding: 0 10px;
+        font-size: 0.72rem;
+    }
+
+    .quiz-card {
+        padding: 16px;
+    }
+}
+
+@media print {
+    .site-header,
+    .loader,
+    .scroll-progress,
+    .network-bg,
+    .theme-toggle,
+    .menu-toggle,
+    .hero-actions,
+    .side-dots,
+    .floating-resources,
+    .back-to-top {
+        display: none;
+    }
+
+    body {
+        background: #ffffff;
+        color: #000000;
+    }
+
+    .section,
+    .section-alt {
+        width: 100%;
+        padding: 24px 0;
+        background: #ffffff;
     }
 }

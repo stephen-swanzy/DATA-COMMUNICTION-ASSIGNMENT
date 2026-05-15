@@ -9,8 +9,18 @@ const topicSearch = document.querySelector("#topic-search");
 const countElements = document.querySelectorAll("[data-count]");
 const copyLink = document.querySelector(".copy-link");
 const footerClock = document.querySelector("#footer-clock");
+const loader = document.querySelector(".loader");
+const printPage = document.querySelector(".print-page");
+const quizSubmit = document.querySelector(".quiz-submit");
+const quizResult = document.querySelector(".quiz-result");
 
 document.getElementById("current-year").textContent = new Date().getFullYear();
+
+window.addEventListener("load", () => {
+    setTimeout(() => {
+        loader.classList.add("hidden");
+    }, 450);
+});
 
 const savedTheme = localStorage.getItem("theme");
 
@@ -75,6 +85,10 @@ copyLink.addEventListener("click", async () => {
     }, 1800);
 });
 
+printPage.addEventListener("click", () => {
+    window.print();
+});
+
 document.querySelectorAll(".accordion-trigger").forEach((trigger) => {
     trigger.addEventListener("click", () => {
         const panel = trigger.nextElementSibling;
@@ -102,6 +116,28 @@ document.querySelectorAll(".flip-card").forEach((card) => {
             card.setAttribute("aria-pressed", String(card.classList.contains("is-flipped")));
         }
     });
+
+    const title = card.querySelector("h3")?.textContent || "topic";
+    const back = card.querySelector(".flip-card-back");
+    const learnedKey = `learned:${title}`;
+    const learnedButton = document.createElement("button");
+    learnedButton.type = "button";
+    learnedButton.className = "learned-btn";
+    learnedButton.textContent = localStorage.getItem(learnedKey) === "true" ? "Learned" : "Mark as learned";
+
+    if (localStorage.getItem(learnedKey) === "true") {
+        card.classList.add("learned");
+    }
+
+    learnedButton.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const isLearned = !card.classList.contains("learned");
+        card.classList.toggle("learned", isLearned);
+        localStorage.setItem(learnedKey, String(isLearned));
+        learnedButton.textContent = isLearned ? "Learned" : "Mark as learned";
+    });
+
+    back.appendChild(learnedButton);
 });
 
 topicSearch.addEventListener("input", () => {
@@ -143,6 +179,16 @@ const countObserver = new IntersectionObserver(
 );
 
 countElements.forEach((element) => countObserver.observe(element));
+
+quizSubmit.addEventListener("click", () => {
+    const answers = ["q1", "q2", "q3"];
+    const score = answers.reduce((total, name) => {
+        const selected = document.querySelector(`input[name="${name}"]:checked`);
+        return total + (selected?.value === "correct" ? 1 : 0);
+    }, 0);
+
+    quizResult.textContent = `You scored ${score} out of ${answers.length}.`;
+});
 
 const activeObserver = new IntersectionObserver(
     (entries) => {
