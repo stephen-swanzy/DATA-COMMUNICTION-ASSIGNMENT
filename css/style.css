@@ -598,6 +598,14 @@ h3 {
     border-color: var(--primary);
 }
 
+.learned-progress {
+    max-width: 560px;
+    margin: -10px auto 24px;
+    color: var(--primary-dark);
+    font-weight: 900;
+    text-align: center;
+}
+
 .topic-card {
     background: var(--surface);
     transition: transform 180ms ease, border-color 180ms ease;
@@ -1021,6 +1029,14 @@ body.dark-theme .stats-grid div {
 .quiz-card label {
     color: var(--muted);
     font-weight: 700;
+}
+
+.quiz-card label.correct-answer {
+    color: #0f766e;
+}
+
+.quiz-card label.wrong-answer {
+    color: #b42318;
 }
 
 .quiz-submit {
@@ -1490,5 +1506,25 @@ body.dark-theme .stats-grid div {
         width: 100%;
         padding: 24px 0;
         background: #ffffff;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto;
+        animation-duration: 0.01ms;
+        animation-iteration-count: 1;
+        transition-duration: 0.01ms;
+    }
+
+    .network-bg {
+        animation: none;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
     }
 }

@@ -13,6 +13,7 @@ const loader = document.querySelector(".loader");
 const printPage = document.querySelector(".print-page");
 const quizSubmit = document.querySelector(".quiz-submit");
 const quizResult = document.querySelector(".quiz-result");
+const learnedProgress = document.querySelector(".learned-progress");
 
 document.getElementById("current-year").textContent = new Date().getFullYear();
 
@@ -135,10 +136,23 @@ document.querySelectorAll(".flip-card").forEach((card) => {
         card.classList.toggle("learned", isLearned);
         localStorage.setItem(learnedKey, String(isLearned));
         learnedButton.textContent = isLearned ? "Learned" : "Mark as learned";
+        updateLearnedProgress();
     });
 
     back.appendChild(learnedButton);
 });
+
+const updateLearnedProgress = () => {
+    const cards = document.querySelectorAll(".flip-card");
+    const learnedCount = document.querySelectorAll(".flip-card.learned").length;
+    learnedProgress.textContent = `${learnedCount} of ${cards.length} topics marked learned`;
+};
+
+document.querySelectorAll(".flip-card").forEach((card) => {
+    card.addEventListener("click", updateLearnedProgress);
+});
+
+updateLearnedProgress();
 
 topicSearch.addEventListener("input", () => {
     const searchTerm = topicSearch.value.trim().toLowerCase();
@@ -186,6 +200,19 @@ quizSubmit.addEventListener("click", () => {
         const selected = document.querySelector(`input[name="${name}"]:checked`);
         return total + (selected?.value === "correct" ? 1 : 0);
     }, 0);
+
+    document.querySelectorAll(".quiz-card label").forEach((label) => {
+        const input = label.querySelector("input");
+        label.classList.remove("correct-answer", "wrong-answer");
+
+        if (input?.value === "correct") {
+            label.classList.add("correct-answer");
+        }
+
+        if (input?.checked && input.value !== "correct") {
+            label.classList.add("wrong-answer");
+        }
+    });
 
     quizResult.textContent = `You scored ${score} out of ${answers.length}.`;
 });
