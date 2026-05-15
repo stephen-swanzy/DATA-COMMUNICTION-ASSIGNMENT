@@ -7,6 +7,8 @@ const themeToggle = document.querySelector(".theme-toggle");
 const scrollProgress = document.querySelector(".scroll-progress");
 const topicSearch = document.querySelector("#topic-search");
 const countElements = document.querySelectorAll("[data-count]");
+const copyLink = document.querySelector(".copy-link");
+const footerClock = document.querySelector("#footer-clock");
 
 document.getElementById("current-year").textContent = new Date().getFullYear();
 
@@ -45,6 +47,32 @@ links.forEach((link) => {
         navLinks.classList.remove("open");
         menuToggle.setAttribute("aria-expanded", "false");
     });
+});
+
+document.querySelectorAll(".quick-jumps a").forEach((link) => {
+    link.addEventListener("click", (event) => {
+        event.preventDefault();
+        const target = document.querySelector(link.getAttribute("href"));
+
+        if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+    });
+});
+
+copyLink.addEventListener("click", async () => {
+    const liveLink = "https://stephen-swanzy.github.io/DATA-COMMUNICTION-ASSIGNMENT/";
+
+    try {
+        await navigator.clipboard.writeText(liveLink);
+        copyLink.textContent = "Link Copied";
+    } catch {
+        copyLink.textContent = "Copy Failed";
+    }
+
+    setTimeout(() => {
+        copyLink.textContent = "Copy Live Link";
+    }, 1800);
 });
 
 document.querySelectorAll(".accordion-trigger").forEach((trigger) => {
@@ -163,3 +191,18 @@ window.addEventListener("scroll", () => {
 backToTop.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
 });
+
+const updateFooterClock = () => {
+    const now = new Date();
+    footerClock.textContent = now.toLocaleString([], {
+        weekday: "short",
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+    });
+};
+
+updateFooterClock();
+setInterval(updateFooterClock, 60000);
