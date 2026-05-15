@@ -1069,13 +1069,37 @@ body.dark-theme .stats-grid div {
         padding: 20px;
     }
 
-    .flip-card,
-    .flip-card-face {
-        min-height: 300px;
+    .flip-card {
+        min-height: auto;
+        cursor: default;
+        perspective: none;
+    }
+
+    .flip-card-inner,
+    .flip-card.is-flipped .flip-card-inner {
+        display: grid;
+        gap: 12px;
+        height: auto;
+        min-height: 0;
+        transform: none;
     }
 
     .flip-card-face {
+        position: static;
+        min-height: 0;
         padding: 22px;
+        transform: none;
+        backface-visibility: visible;
+    }
+
+    .flip-card-front {
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .flip-card-back {
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
     }
 
     .hero-actions {
@@ -1201,11 +1225,6 @@ body.dark-theme .stats-grid div {
     .application-list article,
     .resource-link {
         padding: 16px;
-    }
-
-    .flip-card,
-    .flip-card-face {
-        min-height: 330px;
     }
 
     .flip-card-face {
