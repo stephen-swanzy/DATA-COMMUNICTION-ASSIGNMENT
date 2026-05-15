@@ -10,9 +10,11 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+    <div class="scroll-progress" aria-hidden="true"></div>
     <header class="site-header">
         <nav class="navbar" aria-label="Primary navigation">
             <a href="#home" class="brand">Data Communication</a>
+            <button class="theme-toggle" type="button" aria-label="Toggle dark theme">Theme</button>
             <button class="menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
                 <span></span>
                 <span></span>
@@ -56,10 +58,10 @@
                     </div>
                 </div>
                 <div class="stats-grid" aria-label="Assignment overview">
-                    <div><strong>10+</strong><span>Topics</span></div>
-                    <div><strong>7</strong><span>OSI Layers</span></div>
-                    <div><strong>4</strong><span>TCP/IP Layers</span></div>
-                    <div><strong>3</strong><span>Telegraph Images</span></div>
+                    <div><strong data-count="13">0</strong><span>Topics</span></div>
+                    <div><strong data-count="7">0</strong><span>OSI Layers</span></div>
+                    <div><strong data-count="4">0</strong><span>TCP/IP Layers</span></div>
+                    <div><strong data-count="3">0</strong><span>Telegraph Images</span></div>
                 </div>
             </div>
         </section>
@@ -113,6 +115,10 @@
                 <p class="eyebrow">Expanded topics</p>
                 <h2>Important Areas in Data Communication</h2>
             </div>
+            <label class="topic-search" for="topic-search">
+                <span>Search topics</span>
+                <input id="topic-search" type="search" placeholder="Type cryptography, satellite, OSI...">
+            </label>
             <div class="topic-grid">
                 <article class="topic-card flip-card" tabindex="0">
                     <div class="flip-card-inner">

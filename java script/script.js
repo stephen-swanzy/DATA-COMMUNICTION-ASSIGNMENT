@@ -3,8 +3,30 @@ const navLinks = document.querySelector(".nav-links");
 const links = document.querySelectorAll(".nav-link");
 const sections = document.querySelectorAll("main section[id]");
 const backToTop = document.querySelector(".back-to-top");
+const themeToggle = document.querySelector(".theme-toggle");
+const scrollProgress = document.querySelector(".scroll-progress");
+const topicSearch = document.querySelector("#topic-search");
+const countElements = document.querySelectorAll("[data-count]");
 
 document.getElementById("current-year").textContent = new Date().getFullYear();
+
+const savedTheme = localStorage.getItem("theme");
+
+if (savedTheme === "dark") {
+    document.body.classList.add("dark-theme");
+}
+
+const updateThemeLabel = () => {
+    themeToggle.textContent = document.body.classList.contains("dark-theme") ? "Light" : "Dark";
+};
+
+updateThemeLabel();
+
+themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-theme");
+    localStorage.setItem("theme", document.body.classList.contains("dark-theme") ? "dark" : "light");
+    updateThemeLabel();
+});
 
 menuToggle.addEventListener("click", () => {
     const isOpen = navLinks.classList.toggle("open");
@@ -54,6 +76,46 @@ document.querySelectorAll(".flip-card").forEach((card) => {
     });
 });
 
+topicSearch.addEventListener("input", () => {
+    const searchTerm = topicSearch.value.trim().toLowerCase();
+
+    document.querySelectorAll(".flip-card").forEach((card) => {
+        const text = card.textContent.toLowerCase();
+        card.classList.toggle("hidden-topic", searchTerm !== "" && !text.includes(searchTerm));
+    });
+});
+
+const animateCount = (element) => {
+    const target = Number(element.dataset.count);
+    let current = 0;
+    const step = Math.max(1, Math.ceil(target / 32));
+
+    const update = () => {
+        current = Math.min(target, current + step);
+        element.textContent = current;
+
+        if (current < target) {
+            requestAnimationFrame(update);
+        }
+    };
+
+    update();
+};
+
+const countObserver = new IntersectionObserver(
+    (entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                animateCount(entry.target);
+                countObserver.unobserve(entry.target);
+            }
+        });
+    },
+    { threshold: 0.8 }
+);
+
+countElements.forEach((element) => countObserver.observe(element));
+
 const activeObserver = new IntersectionObserver(
     (entries) => {
         entries.forEach((entry) => {
@@ -92,6 +154,10 @@ document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe
 
 window.addEventListener("scroll", () => {
     backToTop.classList.toggle("visible", window.scrollY > 500);
+
+    const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = scrollableHeight > 0 ? (window.scrollY / scrollableHeight) * 100 : 0;
+    scrollProgress.style.width = `${progress}%`;
 });
 
 backToTop.addEventListener("click", () => {
