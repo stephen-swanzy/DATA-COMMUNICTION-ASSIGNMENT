@@ -13,9 +13,15 @@ const loader = document.querySelector(".loader");
 const printPage = document.querySelector(".print-page");
 const quizSubmit = document.querySelector(".quiz-submit");
 const quizResult = document.querySelector(".quiz-result");
+const quizScorebar = document.querySelector(".quiz-scorebar span");
 const learnedProgress = document.querySelector(".learned-progress");
+const certificateYear = document.querySelector(".certificate-year");
 
 document.getElementById("current-year").textContent = new Date().getFullYear();
+
+if (certificateYear) {
+    certificateYear.textContent = new Date().getFullYear();
+}
 
 window.addEventListener("load", () => {
     setTimeout(() => {
@@ -61,6 +67,17 @@ links.forEach((link) => {
 });
 
 document.querySelectorAll(".quick-jumps a").forEach((link) => {
+    link.addEventListener("click", (event) => {
+        event.preventDefault();
+        const target = document.querySelector(link.getAttribute("href"));
+
+        if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+    });
+});
+
+document.querySelectorAll(".toc-grid a, .footer a[href^='#']").forEach((link) => {
     link.addEventListener("click", (event) => {
         event.preventDefault();
         const target = document.querySelector(link.getAttribute("href"));
@@ -154,12 +171,52 @@ document.querySelectorAll(".flip-card").forEach((card) => {
 
 updateLearnedProgress();
 
+const escapeHtml = (text) => text.replace(/[&<>"']/g, (character) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    "\"": "&quot;",
+    "'": "&#039;"
+}[character]));
+
+const escapeRegExp = (text) => text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+const resetSearchHighlights = () => {
+    document.querySelectorAll("[data-search-text]").forEach((element) => {
+        element.textContent = element.dataset.searchText;
+    });
+};
+
+const highlightSearchTerm = (card, searchTerm) => {
+    if (!searchTerm) {
+        return;
+    }
+
+    const pattern = new RegExp(`(${escapeRegExp(searchTerm)})`, "gi");
+
+    card.querySelectorAll("h3, p").forEach((element) => {
+        if (!element.dataset.searchText) {
+            element.dataset.searchText = element.textContent;
+        }
+
+        const originalText = element.dataset.searchText;
+        element.innerHTML = escapeHtml(originalText).replace(pattern, "<mark class=\"search-highlight\">$1</mark>");
+    });
+};
+
 topicSearch.addEventListener("input", () => {
     const searchTerm = topicSearch.value.trim().toLowerCase();
+    resetSearchHighlights();
 
     document.querySelectorAll(".flip-card").forEach((card) => {
         const text = card.textContent.toLowerCase();
-        card.classList.toggle("hidden-topic", searchTerm !== "" && !text.includes(searchTerm));
+        const isHidden = searchTerm !== "" && !text.includes(searchTerm);
+
+        card.classList.toggle("hidden-topic", isHidden);
+
+        if (!isHidden) {
+            highlightSearchTerm(card, searchTerm);
+        }
     });
 });
 
@@ -214,7 +271,15 @@ quizSubmit.addEventListener("click", () => {
         }
     });
 
-    quizResult.textContent = `You scored ${score} out of ${answers.length}.`;
+    const percent = Math.round((score / answers.length) * 100);
+    const message = score === answers.length
+        ? "Excellent work. You understand the key ideas."
+        : score >= 2
+            ? "Good effort. Review the highlighted answers and try again."
+            : "Keep studying the sections above, then try again.";
+
+    quizScorebar.style.width = `${percent}%`;
+    quizResult.textContent = `You scored ${score} out of ${answers.length} (${percent}%). ${message}`;
 });
 
 const activeObserver = new IntersectionObserver(
