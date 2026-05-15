@@ -36,6 +36,24 @@ document.querySelectorAll(".accordion-trigger").forEach((trigger) => {
     });
 });
 
+document.querySelectorAll(".flip-card").forEach((card) => {
+    card.setAttribute("role", "button");
+    card.setAttribute("aria-pressed", "false");
+
+    card.addEventListener("click", () => {
+        card.classList.toggle("is-flipped");
+        card.setAttribute("aria-pressed", String(card.classList.contains("is-flipped")));
+    });
+
+    card.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            card.classList.toggle("is-flipped");
+            card.setAttribute("aria-pressed", String(card.classList.contains("is-flipped")));
+        }
+    });
+});
+
 const activeObserver = new IntersectionObserver(
     (entries) => {
         entries.forEach((entry) => {

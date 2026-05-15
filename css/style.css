@@ -151,6 +151,12 @@ iframe {
     text-align: left;
 }
 
+.profile-identity {
+    display: grid;
+    justify-items: center;
+    gap: 8px;
+}
+
 .profile-photo {
     display: block;
     width: 270px;
@@ -161,6 +167,21 @@ iframe {
     border-radius: 50%;
     background: var(--surface);
     box-shadow: var(--shadow);
+}
+
+.profile-identity h2 {
+    margin-top: 6px;
+    color: var(--ink);
+    font-size: 1.28rem;
+    text-align: center;
+}
+
+.profile-identity p {
+    margin: 0;
+    color: var(--primary-dark);
+    font-size: 0.92rem;
+    font-weight: 900;
+    text-align: center;
 }
 
 .badge,
@@ -377,6 +398,83 @@ h3 {
 .topic-card:hover {
     border-color: rgba(37, 99, 235, 0.45);
     transform: translateY(-3px);
+}
+
+.flip-card {
+    min-height: 260px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    cursor: pointer;
+    perspective: 1200px;
+}
+
+.flip-card:hover {
+    transform: none;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 520ms ease;
+}
+
+.flip-card.is-flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card:focus-visible {
+    outline: 3px solid rgba(7, 135, 166, 0.35);
+    outline-offset: 4px;
+}
+
+.flip-card-face {
+    display: flex;
+    position: absolute;
+    inset: 0;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 260px;
+    padding: 26px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    backface-visibility: hidden;
+    box-shadow: var(--shadow);
+    overflow-y: auto;
+}
+
+.flip-card-front {
+    background:
+        linear-gradient(135deg, rgba(7, 135, 166, 0.12), transparent),
+        var(--surface);
+}
+
+.flip-card-back {
+    background: linear-gradient(135deg, var(--primary-dark), #087b95);
+    color: #ffffff;
+    transform: rotateY(180deg);
+}
+
+.flip-card-back p,
+.flip-card-back h3 {
+    color: #ffffff;
+}
+
+.flip-hint {
+    display: inline-flex;
+    align-self: flex-start;
+    margin-bottom: 16px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: rgba(7, 135, 166, 0.1);
+    color: var(--primary-dark);
+    font-size: 0.72rem;
+    font-weight: 900;
+    text-transform: uppercase;
 }
 
 .topic-card-wide {
@@ -735,6 +833,10 @@ h3 {
         border-width: 6px;
     }
 
+    .profile-identity h2 {
+        font-size: 1.18rem;
+    }
+
     h1 {
         font-size: clamp(2.2rem, 13vw, 3.4rem);
     }
@@ -752,11 +854,19 @@ h3 {
 
     .stats-grid div,
     .info-card,
-    .topic-card,
     .model-card,
     .application-list article,
     .resource-link {
         padding: 20px;
+    }
+
+    .flip-card,
+    .flip-card-face {
+        min-height: 300px;
+    }
+
+    .flip-card-face {
+        padding: 22px;
     }
 
     .hero-actions {
@@ -869,11 +979,19 @@ h3 {
 
     .stats-grid div,
     .info-card,
-    .topic-card,
     .model-card,
     .application-list article,
     .resource-link {
         padding: 16px;
+    }
+
+    .flip-card,
+    .flip-card-face {
+        min-height: 330px;
+    }
+
+    .flip-card-face {
+        padding: 18px;
     }
 
     .detailed-models .model-card {
