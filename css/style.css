@@ -1069,37 +1069,14 @@ body.dark-theme .stats-grid div {
         padding: 20px;
     }
 
-    .flip-card {
-        min-height: auto;
-        cursor: default;
-        perspective: none;
-    }
-
-    .flip-card-inner,
-    .flip-card.is-flipped .flip-card-inner {
-        display: grid;
-        gap: 12px;
-        height: auto;
-        min-height: 0;
-        transform: none;
+    .flip-card,
+    .flip-card-face {
+        min-height: 350px;
     }
 
     .flip-card-face {
-        position: static;
-        min-height: 0;
-        padding: 22px;
-        transform: none;
-        backface-visibility: visible;
-    }
-
-    .flip-card-front {
-        border-bottom-right-radius: 0;
-        border-bottom-left-radius: 0;
-    }
-
-    .flip-card-back {
-        border-top-right-radius: 0;
-        border-top-left-radius: 0;
+        justify-content: flex-start;
+        padding: 20px;
     }
 
     .hero-actions {
@@ -1190,8 +1167,8 @@ body.dark-theme .stats-grid div {
     .section,
     .section-alt {
         width: calc(100% - 20px);
-        padding-top: 46px;
-        padding-bottom: 46px;
+        padding-top: 38px;
+        padding-bottom: 38px;
     }
 
     .hero {
@@ -1199,15 +1176,15 @@ body.dark-theme .stats-grid div {
     }
 
     .profile-photo {
-        width: min(190px, 62vw);
+        width: min(170px, 58vw);
     }
 
     h1 {
-        font-size: clamp(2rem, 12vw, 2.8rem);
+        font-size: clamp(1.85rem, 11vw, 2.45rem);
     }
 
     h2 {
-        font-size: clamp(1.6rem, 9vw, 2.1rem);
+        font-size: clamp(1.45rem, 8vw, 1.9rem);
     }
 
     h3 {
@@ -1224,11 +1201,20 @@ body.dark-theme .stats-grid div {
     .timeline article,
     .application-list article,
     .resource-link {
-        padding: 16px;
+        padding: 14px;
+    }
+
+    .flip-card,
+    .flip-card-face {
+        min-height: 370px;
     }
 
     .flip-card-face {
-        padding: 18px;
+        padding: 16px;
+    }
+
+    .flip-card-face p {
+        font-size: 0.94rem;
     }
 
     .detailed-models .model-card {
